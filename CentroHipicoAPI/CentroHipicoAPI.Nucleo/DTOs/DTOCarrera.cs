@@ -16,7 +16,7 @@ namespace CentroHipicoAPI.Nucleo.DTOs
         public decimal? MontoGanancia { get; set; }
         public decimal? MontoSubTotal { get; set; }
         public decimal? MontoTotal { get; set; }
-        public int NumeroCarrera { get; set; }
+        public int NumeroCarrera { get; set; } = 0;
         public string Ubicacion { get; set; } = "";
     }
 
