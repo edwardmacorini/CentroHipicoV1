@@ -10,43 +10,45 @@
   </div>
 </div>
 
-<table mat-table [dataSource]="carreraDataSource" class="mat-elevation-z0 carrera-table">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nº Carrera </th>
-    <td mat-cell *matCellDef="let element" class="text-center"> {{element.id}} </td>
-  </ng-container>
+<div class="table-container">
+  <table mat-table [dataSource]="carreraDataSource" class="mat-elevation-z0 carrera-table">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nº Carrera </th>
+      <td mat-cell *matCellDef="let element" class="text-center"> {{element.id}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="fechaCarrera">
-    <th mat-header-cell *matHeaderCellDef> Fecha </th>
-    <td mat-cell *matCellDef="let element"> {{element.fechaCarrera}} </td>
-  </ng-container>
+    <ng-container matColumnDef="fechaCarrera">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaCarrera}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="ubicacion">
-    <th mat-header-cell *matHeaderCellDef> Ubicación </th>
-    <td mat-cell *matCellDef="let element"> {{element.ubicacion}} </td>
-  </ng-container>
+    <ng-container matColumnDef="ubicacion">
+      <th mat-header-cell *matHeaderCellDef> Ubicación </th>
+      <td mat-cell *matCellDef="let element"> {{element.ubicacion}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="estado">
-    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-    <td mat-cell *matCellDef="let element" class="text-center"> 0 </td>
-  </ng-container>
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
+      <td mat-cell *matCellDef="let element" class="text-center"> 0 </td>
+    </ng-container>
 
-  <ng-container matColumnDef="accion">
-    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Acciones</th>
-    <td mat-cell *matCellDef="let element" class="text-center">
-      <button mat-icon-button color="primary">
-        <mat-icon>visibility</mat-icon>
-      </button>
-      <button mat-icon-button color="primary">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="accion">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Acciones</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button mat-icon-button color="primary">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="primary">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="carreraDisplayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: carreraDisplayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="carreraDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: carreraDisplayedColumns;"></tr>
 
-  <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">No se encuentran carreras disponibles</td>
-  </tr>
-</table>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No se encuentran carreras disponibles</td>
+    </tr>
+  </table>
+</div>

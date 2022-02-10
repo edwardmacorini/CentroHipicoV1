@@ -16,15 +16,20 @@ import { AgregarCarreraComponent, AgregarCarreraDialog } from './components/agre
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CarreraComponent } from './components/carrera/carrera.component';
+import { HomeRoutingModule } from './test-routing.module';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AgregarCarreraComponent,
-    AgregarCarreraDialog
+    AgregarCarreraDialog,
+    CarreraComponent
   ],
   imports: [
     CommonModule,
+    HomeRoutingModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MatCardModule,
@@ -38,7 +43,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     NgxMaterialTimepickerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonToggleModule
   ],
   exports: [
     HomeComponent
