@@ -18,3 +18,7 @@
 .carrera-table {
     width: 100%;
 }
+
+::ng-deep .mat-chip-list-wrapper {
+    justify-content: center;
+}

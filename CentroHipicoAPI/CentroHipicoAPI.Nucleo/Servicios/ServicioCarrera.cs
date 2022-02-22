@@ -31,6 +31,8 @@ namespace CentroHipicoAPI.Nucleo.Servicios
             if (carrera == null)
                 throw new ArgumentException();
 
+            carrera.FechaCarrera = carrera.FechaCarrera.AddHours(-4);
+
             await _repositorioCarrera.AgregarCarrera(carrera);
         }
 
@@ -41,11 +43,11 @@ namespace CentroHipicoAPI.Nucleo.Servicios
 
             var carreraEncontrada = await _repositorioCarrera.ObtenerCarreraPorId(carrera.Id);
             if (carreraEncontrada == null)
-                throw new NullReferenceException();
+                throw new NullReferenceException("La carrera no existe..!");
 
             var detalles = await _repositorioCarrera.ObtenerDetalles(carrera.Id);
             if (detalles != null && detalles.Count > 0)
-                throw new Exception();
+                throw new Exception("La carrera tiene apuestas abiertas..!");
 
             var ejemplares = await _repositorioCarrera.ObtenerEjemplares(carrera.Id);
             if (ejemplares != null && ejemplares.Count > 0)

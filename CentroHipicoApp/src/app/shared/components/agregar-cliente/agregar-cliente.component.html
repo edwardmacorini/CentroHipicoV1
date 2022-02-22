@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Agregar nuevo cliente</h2>
+<form>
+    <mat-form-field class="w-full">
+        <input matInput placeholder="Nombre" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <input matInput placeholder="Telefono" autocomplete="off">
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+        <button mat-raised-button color="primary">Agregar</button>
+        <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+    </div>
+</form>

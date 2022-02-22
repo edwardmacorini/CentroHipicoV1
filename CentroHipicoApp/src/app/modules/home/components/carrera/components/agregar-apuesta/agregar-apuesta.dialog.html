@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Agregar apuesta</h2>
+<form [formGroup]="apuestaForm ">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Cliente</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let option of clientesFiltrados | async" [value]="option.nombre">
+                    {{option.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-mini-fab color="primary" matTooltip="Agregar nuevo ejemplar" (click)="openDialog($event)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Ejemplar</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let option of ejemplaresFiltrados | async" [value]="option.nombre">
+                {{option.nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <input matInput placeholder="Monto" autocomplete="off">
+        <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+        <button mat-raised-button color="primary">Agregar</button>
+        <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+    </div>
+
+</form>

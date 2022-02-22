@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AuthModule } from './modules/auth/auth.module';
 import { HomeModule } from './modules/home/home.module';
 
+import { AppComponent } from './app.component';
 // //Angular Material Components
 // import { MatCheckboxModule } from '@angular/material/checkbox';
 // import { MatButtonModule } from '@angular/material/button';
@@ -44,9 +45,10 @@ import { HomeModule } from './modules/home/home.module';
     AppComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     /* My Modules */
     AuthModule,
     HomeModule,

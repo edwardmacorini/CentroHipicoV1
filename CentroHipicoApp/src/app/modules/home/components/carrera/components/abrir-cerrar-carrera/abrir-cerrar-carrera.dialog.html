@@ -1,0 +1,20 @@
+<div *ngIf="!opts">
+    <h2 mat-dialog-title style="margin: 0;">Carrera Nº {{ carrera.id }}</h2>
+    <div mat-dialog-content>
+        <p style="margin: 5px 10px; font-size: 1.4em;">¿Desea abrir la carrera?</p>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+            <button mat-raised-button color="primary" (click)="abrirCarrera()">Si</button>
+            <button mat-raised-button color="warn" (click)="onClose()">No</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="opts">
+    <h2 mat-dialog-title style="margin: 0;">Carrera Nº {{ carrera.id }}</h2>
+    <div mat-dialog-content>
+        <p style="margin: 5px 10px; font-size: 1.4em;">¿Desea cerrar la carrera?</p>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+            <button mat-raised-button color="primary" (click)="cerrarCarrera()">Si</button>
+            <button mat-raised-button color="warn" (click)="onClose()">No</button>
+        </div>
+    </div>
+</div>

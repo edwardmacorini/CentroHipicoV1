@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Agregar ejemplar</h2>
+<form [formGroup]="ejemplarForm" (submit)="onSubmit($event)">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+        <mat-form-field style="width: 100%" appearance="fill" color="primary">
+            <mat-label>Ejemplar</mat-label>
+            <input type="text" placeholder="Buscar ejemplar" aria-label="Ejemplar" matInput formControlName="ejemplar"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of ejemplaresFiltrados | async" [value]="option.nombre">
+                    {{option.nombre}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button mat-mini-fab color="primary" matTooltip="Agregar nuevo ejemplar" (click)="openDialog($event)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <section>
+        <p>
+            <mat-checkbox formControlName="esFavorito">¿Es favorito?</mat-checkbox>
+        </p>
+    </section>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+        <button mat-raised-button color="primary" type="submit">Agregar</button>
+        <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+    </div>
+
+</form>

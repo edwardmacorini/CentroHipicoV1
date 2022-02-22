@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Agregar nuevo ejemplar</h2>
+<form [formGroup]="ejemplarForm" (submit)="onSubmit($event)">
+    <mat-form-field class="w-full">
+        <input matInput placeholder="Nombre" autocomplete="off" formControlName="nombre">
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+        <button mat-raised-button color="primary" type="submit">Agregar</button>
+        <button mat-raised-button color="warn" (click)="onClose($event)">Cancelar</button>
+    </div>
+</form>

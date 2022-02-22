@@ -1,0 +1,32 @@
+<form [formGroup]="carreraForm" (submit)="agregarCarrera($event)">
+    <div fxLayout="column" fxLayoutGap="12px">
+        <h2 style="color: #4c4c4c;">Crear nueva carrera</h2>
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+            <!-- <mat-form-field appearance="fill" style="width: 100%">
+                <mat-label>Elegir Fecha</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field> -->
+            <mat-form-field appearance="fill" style="width: 100%">
+                <input matInput [ngxMatDatetimePicker]="picker" placeholder="Elige una fecha"
+                    formControlName="fechaCarrera">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker [enableMeridian]="true">
+                    <!-- Custom icon or text of Apply icon -->
+                    <ng-template>
+                        <!-- <mat-icon>star</mat-icon> -->
+                        <span>OK</span>
+                    </ng-template>
+                </ngx-mat-datetime-picker>
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width: 100%">
+                <input matInput placeholder="Ubicación" autocomplete="off" formControlName="ubicacion">
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                <button mat-raised-button color="primary" type="submit">Crear carrera</button>
+                <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,50 +1,53 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
 import { AgregarCarreraComponent, AgregarCarreraDialog } from './components/agregar-carrera/agregar-carrera.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { CarreraComponent } from './components/carrera/carrera.component';
-import { HomeRoutingModule } from './test-routing.module';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { AbrirCerrarCarreraComponent, AbrirCerrarCarreraDialog } from './components/carrera/components/abrir-cerrar-carrera/abrir-cerrar-carrera.component';
+import { AgregarApuestaComponent, AgregarApuestaDialog } from './components/carrera/components/agregar-apuesta/agregar-apuesta.component';
+import { AgregarEjemplarComponent, AgregarEjemplarDialog } from './components/carrera/components/agregar-ejemplar/agregar-ejemplar.component';
+import { AgregarGanadorComponent, AgregarGanadorDialog } from './components/carrera/components/agregar-ganador/agregar-ganador.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+import { EliminarCarreraDialogComponent } from './components/eliminar-carrera/eliminar-carrera.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AgregarCarreraComponent,
     AgregarCarreraDialog,
-    CarreraComponent
+    CarreraComponent,
+    AbrirCerrarCarreraComponent,
+    AbrirCerrarCarreraDialog,
+    AgregarApuestaComponent,
+    AgregarApuestaDialog,
+    AgregarEjemplarComponent,
+    AgregarEjemplarDialog,
+    AgregarGanadorComponent,
+    AgregarGanadorDialog,
+    EliminarCarreraDialogComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
-    MatCardModule,
-    MatInputModule,
-    MatDividerModule,
-    MatButtonModule,
+    HomeRoutingModule,
     SharedModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatDialogModule,
-    NgxMaterialTimepickerModule,
+    MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonToggleModule
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
   ],
   exports: [
     HomeComponent

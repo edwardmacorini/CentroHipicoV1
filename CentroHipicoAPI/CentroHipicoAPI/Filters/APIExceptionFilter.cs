@@ -19,7 +19,7 @@ namespace CentroHipicoAPI.Filters
 
             var error = new DTOBase()
             {
-                StatusCode = 500,
+                StatusCode = 200,
                 Success = false,
                 Message = msg
             };

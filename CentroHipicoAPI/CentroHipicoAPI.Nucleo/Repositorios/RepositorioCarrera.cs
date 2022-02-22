@@ -24,7 +24,7 @@ namespace CentroHipicoAPI.Nucleo.Repositorios
                           FechaCarrera = c.FechaCarrera,
                           Ubicacion = c.Ubicacion,
                           EstaActiva = c.EstaActiva,
-                          EstaCerrada = c.EstaActiva
+                          EstaCerrada = c.EstaCerrada
                       }).OrderByDescending(x => x.FechaCarrera)
                         .AsNoTracking()
                         .ToListAsync();

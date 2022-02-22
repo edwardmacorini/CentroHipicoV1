@@ -1,0 +1,10 @@
+<div>
+    <h2 mat-dialog-title style="margin: 0;">Carrera Nº {{ idCarrera }}</h2>
+    <div mat-dialog-content>
+        <p style="margin: 5px 10px; font-size: 1.4em;">¿Desea eliminar la carrera?</p>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
+            <button mat-raised-button color="primary" (click)="onClose(true)">Si</button>
+            <button mat-raised-button color="warn" (click)="onClose(false)">No</button>
+        </div>
+    </div>
+</div>

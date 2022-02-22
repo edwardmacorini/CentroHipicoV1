@@ -1,0 +1,8 @@
+<button *ngIf="!opts" [disabled]="isDisabled" mat-raised-button color="primary" matTooltip="" class="option-button"
+    (click)="openDialog()">
+    <span>Abrir Carrera</span>
+</button>
+<button *ngIf="opts" [disabled]="isDisabled" mat-raised-button color="primary" matTooltip="" class="option-button"
+    (click)="openDialog()">
+    <span>Cerrar Carrera</span>
+</button>

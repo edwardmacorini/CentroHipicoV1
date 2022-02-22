@@ -20,7 +20,8 @@ namespace CentroHipicoAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> ObtenerCarreras()
         {
-            return Ok(await _servicioCarrera.ObtenerCarreras());
+            var result = await _servicioCarrera.ObtenerCarreras();
+            return Ok(result);
         }
 
         [HttpGet]
