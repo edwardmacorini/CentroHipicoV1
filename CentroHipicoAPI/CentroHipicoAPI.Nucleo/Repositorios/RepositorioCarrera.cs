@@ -35,11 +35,15 @@ namespace CentroHipicoAPI.Nucleo.Repositorios
                       select new DTOCarrera
                       {
                           Id = c.Id,
-                          NumeroCarrera = c.NumeroCarrera,
                           FechaCarrera = c.FechaCarrera,
-                          Ubicacion = c.Ubicacion,
                           EstaActiva = c.EstaActiva,
-                          EstaCerrada = c.EstaActiva
+                          EstaCerrada = c.EstaCerrada,
+                          Ganador = c.Ganador,
+                          MontoGanancia = c.MontoGanancia,
+                          MontoSubTotal = c.MontoSubTotal,
+                          MontoTotal = c.MontoTotal,
+                          NumeroCarrera = c.NumeroCarrera,
+                          Ubicacion = c.Ubicacion,
                       }).OrderByDescending(x => x.FechaCarrera)
                         .AsNoTracking()
                         .SingleOrDefaultAsync();
@@ -114,7 +118,7 @@ namespace CentroHipicoAPI.Nucleo.Repositorios
                                       join c in _context.Clientes
                                       on cd.IdCliente equals c.Id
                                       where cd.IdCarrera == idCarrera &&
-                                            cd.IdEjemplar == ejemplar.Id
+                                            cd.IdEjemplar == ejemplar.Ejemplar.Id
                                       select new { cd, c }).AsNoTracking().FirstOrDefaultAsync();
 
                 if (detalles != null)
@@ -257,7 +261,6 @@ namespace CentroHipicoAPI.Nucleo.Repositorios
             carreraDetalleEncontrado.MontoApuesta = carreraDetalle.MontoApuesta;
             carreraDetalleEncontrado.FechaActualizacion = DateTime.Now;
 
-            await _context.CarreraDetalles.AddAsync(carreraDetalleEncontrado);
             await _context.SaveChangesAsync();
         }
 

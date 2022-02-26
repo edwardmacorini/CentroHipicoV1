@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cargarDatos();
+  }
+
+  cargarDatos() {
     this.carreraService.obtenerCarreras()
       // .pipe(
       //   map((carreras: Carrera[]) => {
@@ -42,16 +46,16 @@ export class HomeComponent implements OnInit {
         console.log(val);
         this.carreraDataSource = new MatTableDataSource<Carrera>(val);
       });
-
   }
 
   verCarrera(idCarrera: number) {
     this.carreraService.obtenerCarrera(idCarrera)
-      .subscribe(response => {
-        if (response) {
+      .subscribe({
+        next: (response) => {
           this.carreraService.setCarreraState = response;
           this.router.navigate(['/carrera']);
-        }
+        },
+        error: () => this.snackBar.open('Error en conexión con el servidor.', 'X', { duration: 2 * 1000 })
       });
   }
 
@@ -63,18 +67,16 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.carreraService.eliminarCarrera(carrera).subscribe(
-          (val) => {
-            console.log(val);
-            this.snackBar.open(`Carrera Nº ${carrera.id} eliminada exitosamente..!`, 'X', { duration: 2 * 1000 });
-            this.carreraService.obtenerCarreras()
-              .subscribe(val => { this.carreraDataSource = new MatTableDataSource<Carrera>(val); });
-          },
-          (err) => {
-            let error: BaseResponse = err.error;
-            if (error)
-              this.snackBar.open(error.message, 'X', { duration: 2 * 1000 });
-            else console.log('Error en conexión con el servidor.');
+        this.carreraService.eliminarCarrera(carrera)
+          .subscribe({
+            next: () => this.snackBar.open(`Carrera Nº ${carrera.id} eliminada exitosamente..!`, 'X', { duration: 2 * 1000 }),
+            error: (err) => {
+              let error: BaseResponse = err.error;
+              if (error)
+                this.snackBar.open(error.message, 'X', { duration: 2 * 1000 });
+              else this.snackBar.open('Error en conexión con el servidor.', 'X', { duration: 2 * 1000 });
+            },
+            complete: () => this.cargarDatos()
           });
       }
     });

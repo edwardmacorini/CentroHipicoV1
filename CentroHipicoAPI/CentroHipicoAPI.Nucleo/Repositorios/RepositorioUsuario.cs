@@ -16,22 +16,22 @@ namespace CentroHipicoAPI.Nucleo.Repositorios
 
         }
 
-        public async Task<DTOUsuario> AutenticarUsuarioAsync(DTOUsuario usuario)
+        public async Task<DTOUsuario> AutenticarUsuarioAsync(DTOUsuarioRequest usuario)
         {
             DTOUsuario result = await (from u in _context.Users
-                                                  where u.Username == usuario.Username.Trim()
+                                                  where u.Username.Trim().ToLower() == usuario.Username.Trim().ToLower() &&
+                                                  u.Password.Trim() == usuario.Password.Trim()
                                                   select new DTOUsuario
                                                   {
                                                       Id = u.Id,
                                                       Name = u.Name.Trim().ToLower(),
                                                       Username = u.Username.Trim().ToLower()
                                                   }).FirstOrDefaultAsync();
-            if (result == null)
-                throw new NullReferenceException();
+
             return result;
         }
 
-        public async Task<DTOUsuario> AgregarUsuarioAsync(DTOUsuario usuario)
+        public async Task<DTOUsuario> RegistrarUsuarioAsync(DTOUsuario usuario)
         {
             var nuevoUsuario = new User
             {

@@ -6,7 +6,7 @@
     <p class="title-date">{{ now | date:'longDate' }}</p>
   </div>
   <div>
-    <app-agregar-carrera></app-agregar-carrera>
+    <app-agregar-carrera (eventEmitter)="cargarDatos()"></app-agregar-carrera>
   </div>
 </div>
 

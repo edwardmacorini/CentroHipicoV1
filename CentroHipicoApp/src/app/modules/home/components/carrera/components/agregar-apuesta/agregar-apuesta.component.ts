@@ -1,8 +1,9 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { combineLatest, Observable } from 'rxjs';
-import { Carrera, CarreraDetalle } from 'src/app/core/models/carrera';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { combineLatest, map, Observable, startWith } from 'rxjs';
+import { Carrera, CarreraDetalle, CarreraEjemplar } from 'src/app/core/models/carrera';
 import { Cliente } from 'src/app/core/models/cliente';
 import { Ejemplar } from 'src/app/core/models/ejemplar';
 import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
@@ -32,7 +33,6 @@ export class AgregarApuestaComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
       });
     }
   }
@@ -52,8 +52,8 @@ export class AgregarApuestaDialog {
 
   clientes: Cliente[] = [];
   clientesFiltrados: Observable<Cliente[]> | undefined;
-  ejemplares: Ejemplar[] = [];
-  ejemplaresFiltrados: Observable<Ejemplar[]> | undefined;
+  ejemplares: CarreraEjemplar[] = [];
+  ejemplaresFiltrados: Observable<CarreraEjemplar[]> | undefined;
 
   apuestaForm = new FormGroup({
     cliente: new FormControl('', [Validators.required]),
@@ -64,11 +64,21 @@ export class AgregarApuestaDialog {
   constructor(
     public dialogRef: MatDialogRef<AgregarApuestaDialog>,
     @Inject(MAT_DIALOG_DATA) public data: dialogData,
-    private dialog: MatDialog,
     private carreraService: CarreraService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.carrera = data.carrera;
+  }
+
+  ngOnInit(): void {
+    this.cargarDatos();
+    this.clientesFiltrados = this.apuestaForm.get('cliente')?.valueChanges.pipe(
+      startWith(''),
+      map(val => (typeof val === 'string' ? val : val.nombre)),
+      map(nombre => nombre ? this.clienteFilter(nombre) : this.clientes.slice())
+    );
   }
 
   openDialog(event: Event): void {
@@ -78,30 +88,51 @@ export class AgregarApuestaDialog {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.cargarDatos();
     });
   }
 
-  obtenerDatos() {
+  cargarDatos() {
     combineLatest([
       this.clienteService.obtenerClientes(),
-      this.carreraService.
+      this.carreraService.carrera$
     ])
-    this.clienteService.obtenerClientes()
-      .subscribe(result => this.clientes = result);
+      .subscribe(([clientes, carrera]) => {
+        this.clientes = clientes;
+        this.ejemplares = carrera?.ejemplares ?? [];
+      });
+  }
+
+  private clienteFilter(nombre: string): Cliente[] {
+    const filterValue = nombre.trim().toLowerCase();
+    return this.clientes.filter(option => option.nombre.trim().toLowerCase().includes(filterValue));
   }
 
   onSubmit(event: Event) {
     event.preventDefault();
-    let body: CarreraDetalle = {
-      id: 0,
-      idCarrera: this.carrera.id,
-      cliente:
-        ejemplar
-      montoApuesta
-    }
-    this.carreraService.agregarApuesta()
+    if (this.apuestaForm.valid) {
+      let cliente = this.clientes.find(x => x.nombre == this.apuestaForm.get('cliente')?.value);
+      if (cliente) {
+        let body: CarreraDetalle = {
+          id: 0,
+          idCarrera: this.carrera.id,
+          idCliente: cliente.id ?? 0,
+          idEjemplar: this.apuestaForm.get('ejemplar')?.value,
+          montoApuesta: this.apuestaForm.get('montoApuesta')?.value
+        };
+        //TODO Mostrar mensaje de error
+        console.log(body);
 
+        this.carreraService.agregarApuesta(body)
+          .subscribe(
+            () => {
+              this.carreraService.refrescarCarrera(this.carrera.id);
+              this.snackBar.open('Apuesta agregada exitosamente..!', 'X', { duration: 2 * 1000 });
+              this.onClose();
+            }
+          );
+      }
+    }
   }
 
   onClose(): void {

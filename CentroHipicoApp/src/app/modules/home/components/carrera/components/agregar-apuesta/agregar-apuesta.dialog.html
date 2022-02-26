@@ -1,13 +1,15 @@
 <h2 mat-dialog-title>Agregar apuesta</h2>
-<form [formGroup]="apuestaForm ">
+<form [formGroup]="apuestaForm" (submit)="onSubmit($event)">
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
-        <mat-form-field appearance="fill" class="w-full">
+        <mat-form-field appearance="fill" color="primary" class="w-full">
             <mat-label>Cliente</mat-label>
-            <mat-select>
+            <input type="text" placeholder="Buscar cliente" aria-label="cliente" matInput formControlName="cliente"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
                 <mat-option *ngFor="let option of clientesFiltrados | async" [value]="option.nombre">
                     {{option.nombre}}
                 </mat-option>
-            </mat-select>
+            </mat-autocomplete>
         </mat-form-field>
         <button mat-mini-fab color="primary" matTooltip="Agregar nuevo ejemplar" (click)="openDialog($event)">
             <mat-icon>add</mat-icon>
@@ -16,15 +18,15 @@
 
     <mat-form-field appearance="fill" class="w-full">
         <mat-label>Ejemplar</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let option of ejemplaresFiltrados | async" [value]="option.nombre">
-                {{option.nombre}}
+        <mat-select formControlName="ejemplar">
+            <mat-option *ngFor="let option of ejemplares" [value]="option.ejemplar.id">
+                {{option.ejemplar.nombre}}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field class="w-full">
-        <input matInput placeholder="Monto" autocomplete="off">
+        <input matInput placeholder="Monto" autocomplete="off" type="number" formControlName="montoApuesta">
         <span matPrefix>$&nbsp;</span>
     </mat-form-field>
 

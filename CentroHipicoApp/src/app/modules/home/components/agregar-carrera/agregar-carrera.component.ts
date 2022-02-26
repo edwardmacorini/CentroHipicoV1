@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,8 @@ import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
 })
 export class AgregarCarreraComponent implements OnInit {
 
+  @Output() eventEmitter: EventEmitter<any> = new EventEmitter();
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -20,12 +22,10 @@ export class AgregarCarreraComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AgregarCarreraDialog, {
       width: '350px',
-      // data: { },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
+      this.eventEmitter.emit();
     });
   }
 
@@ -63,12 +63,12 @@ export class AgregarCarreraDialog {
         montoGanancia: null,
         montoSubTotal: null,
         montoTotal: null,
-        ubicacion: this.carreraForm.get('ubicacion')?.value ?? ''
+        ubicacion: this.carreraForm.get('ubicacion')?.value
       };
       this.carreraService.agregarCarrera(carrera).subscribe(val => {
         this.snackBar.open('Carrera agregada exitosamente..!', 'X', { duration: 2 * 1000 });
         this.onClose();
-      })
+      });
     }
   }
 

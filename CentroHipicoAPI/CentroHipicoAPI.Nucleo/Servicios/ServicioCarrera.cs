@@ -141,6 +141,8 @@ namespace CentroHipicoAPI.Nucleo.Servicios
                 {
                     if (detalleEncontrado.MontoApuesta < carreraDetalle.MontoApuesta)
                     {
+                        carreraDetalle.Id = detalleEncontrado.Id;
+
                         carrera.MontoGanancia -= detalleEncontrado.MontoApuesta * 0.2M;
                         carrera.MontoSubTotal -= detalleEncontrado.MontoApuesta * 0.8M;
                         carrera.MontoTotal -= detalleEncontrado.MontoApuesta;
@@ -148,6 +150,7 @@ namespace CentroHipicoAPI.Nucleo.Servicios
                         carrera.MontoGanancia += carreraDetalle.MontoApuesta * 0.2M;
                         carrera.MontoSubTotal += carreraDetalle.MontoApuesta * 0.8M;
                         carrera.MontoTotal += carreraDetalle.MontoApuesta;
+
                         await _repositorioCarrera.ModificarApuesta(carreraDetalle);
                         await _repositorioCarrera.ActualizarCarrera(carrera);
                     }

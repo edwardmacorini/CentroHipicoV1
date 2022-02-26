@@ -13,10 +13,10 @@ export interface Carrera {
     ubicacion: string;
 }
 
-export interface carreraResponse {
+export interface CarreraResponse {
     carrera: Carrera;
     ejemplares: CarreraEjemplar[];
-    detalles: CarreraDetalle[];
+    detalles: CarreraDetalleResponse[];
 }
 
 export interface CarreraEjemplar {
@@ -28,6 +28,14 @@ export interface CarreraEjemplar {
 }
 
 export interface CarreraDetalle {
+    id: number;
+    idCarrera: number;
+    idCliente: number;
+    idEjemplar: number;
+    montoApuesta: number;
+}
+
+export interface CarreraDetalleResponse {
     id: number;
     idCarrera: number;
     cliente?: Cliente;

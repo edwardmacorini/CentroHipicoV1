@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
-import { Carrera, CarreraDetalle, carreraResponse } from 'src/app/core/models/carrera';
+import { Carrera, CarreraDetalle, CarreraDetalleResponse, CarreraResponse } from 'src/app/core/models/carrera';
 import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
 
 @Component({
@@ -11,18 +11,21 @@ import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
 })
 export class CarreraComponent implements OnInit {
   detallesDisplayedColumns: string[] = [/* 'id',  */'idEjemplar', 'idCliente', 'montoApuesta'/* , 'accion' */];
-  detallesDataSource: MatTableDataSource<CarreraDetalle> = new MatTableDataSource<CarreraDetalle>([]);
+  detallesDataSource: MatTableDataSource<CarreraDetalleResponse> = new MatTableDataSource<CarreraDetalleResponse>([]);
 
   carrera: Carrera | undefined;
 
+  msgForCards: { key: string, value: number, color: string }[] = [];
+
   carrera$ = this.carreraService.carrera$
     .pipe(
-      map((val: carreraResponse) => {
+      map((val: CarreraResponse | null) => {
         if (val && val.carrera && val.detalles && val.ejemplares) {
-          console.log(val);
-
           this.carrera = val.carrera;
-          this.detallesDataSource = new MatTableDataSource<CarreraDetalle>(val.detalles);
+          this.msgForCards[0].value = val.carrera.montoGanancia ?? 0;
+          this.msgForCards[1].value = val.carrera.montoSubTotal ?? 0;
+          this.msgForCards[2].value = val.carrera.montoTotal ?? 0;
+          this.detallesDataSource = new MatTableDataSource<CarreraDetalleResponse>(val.detalles);
         }
         return val;
       })
@@ -32,6 +35,11 @@ export class CarreraComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.msgForCards = [
+      { key: 'Ganancias', value: 0, color: '#304ffe' },
+      { key: 'Subtotal', value: 0, color: '#2962ff' },
+      { key: 'Monto Total', value: 0, color: '#00b8d4' },
+    ];
   }
 
   agregarApuesta() {

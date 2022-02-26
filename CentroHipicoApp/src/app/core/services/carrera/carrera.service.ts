@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Carrera, CarreraDetalle, CarreraEjemplar, CarreraGanador, carreraResponse } from '../../models/carrera';
+import { Carrera, CarreraDetalle, CarreraEjemplar, CarreraGanador, CarreraResponse } from '../../models/carrera';
 import { CarreraState } from '../../states/carrera.state';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class CarreraService {
   private readonly ENDPOINT_APUESTA = `${this.ENDPOINT_CARRERAS}/apuesta`;
   private readonly ENDPOINT_GANADOR = `${this.ENDPOINT_CARRERAS}/ganador`;
 
-  get carrera$() { return this.carreraState.state$; }
+  get carrera$(): Observable<CarreraResponse | null> { return this.carreraState.state$; }
   set setCarreraState(value: any) { this.carreraState.setState = value; }
 
   constructor(
@@ -27,11 +27,11 @@ export class CarreraService {
     return this.httpClient.get<Carrera[]>(`${this.ENDPOINT_CARRERAS}`);
   }
 
-  public obtenerCarrera(idCarrera: number): Observable<carreraResponse> {
-    return this.httpClient.get<carreraResponse>(`${this.ENDPOINT_CARRERAS}/${idCarrera.toString()}`);
+  public obtenerCarrera(idCarrera: number): Observable<CarreraResponse> {
+    return this.httpClient.get<CarreraResponse>(`${this.ENDPOINT_CARRERAS}/${idCarrera.toString()}`);
   }
 
-  public refrescarCarrera(idCarrera: number) {
+  public refrescarCarrera(idCarrera: number): void {
     this.obtenerCarrera(idCarrera).subscribe((response) => this.setCarreraState = response);
   }
 

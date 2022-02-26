@@ -9,16 +9,16 @@
         <mat-divider>
         </mat-divider>
         <mat-card-content>
-            <form>
+            <form [formGroup]="usuarioForm" (submit)="onAutenticarse()">
                 <div class="form-auth-padding" fxLayout="column" fxLayoutGap="12px">
                     <mat-form-field>
-                        <input matInput placeholder="Nombre de usuario" autocomplete="off">
+                        <input matInput placeholder="Nombre de usuario" autocomplete="off" formControlName="userName">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Contraseña" autocomplete="off">
+                        <input matInput placeholder="Contraseña" autocomplete="off" formControlName="password">
                     </mat-form-field>
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <button mat-raised-button color="primary">Autenticar</button>
+                        <button mat-raised-button color="primary" type="submit">Autenticar</button>
                     </div>
                 </div>
             </form>

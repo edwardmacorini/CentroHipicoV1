@@ -29,3 +29,24 @@
 .option-button {
     height: 3em;
 }
+
+.custom-row:hover {
+    background: #f9f9f9;
+}
+
+.amount-card-title {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #fffffff2;
+    margin: 0;
+}
+
+.amount-card-content {
+    font-size: 1.7em;
+    color: #fff;
+    font-weight: 600;
+}
+
+::ng-deep .mat-chip-list-wrapper {
+    justify-content: center;
+}
