@@ -24,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatDividerModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AuthComponent

@@ -1,10 +1,12 @@
 ﻿using CentroHipicoAPI.Nucleo.DTOs;
 using CentroHipicoAPI.Nucleo.Servicios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CentroHipicoAPI.Controllers
 {
+    [Authorize]
     [Route("api/clientes")]
     [ApiController]
     public class ClienteController : ControllerBase

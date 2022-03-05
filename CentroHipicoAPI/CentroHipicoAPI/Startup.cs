@@ -16,6 +16,10 @@ using CentroHipicoAPI.Datos.Modelos.CentroHipico;
 using CentroHipicoAPI.Nucleo.Repositorios;
 using CentroHipicoAPI.Nucleo.Servicios;
 using CentroHipicoAPI.Filters;
+using CentroHipicoAPI.Nucleo.Utilitarios;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CentroHipicoAPI
 {
@@ -31,6 +35,25 @@ namespace CentroHipicoAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                var key = Encoding.ASCII.GetBytes(Configuration["SecretKey"]);
+                o.RequireHttpsMetadata = false;
+                o.SaveToken = true;
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                };
+            });
+
             services.AddDbContext<CentroHipicoContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
 
@@ -70,6 +93,8 @@ namespace CentroHipicoAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,27 +1,38 @@
 <div class="main-container" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="main-card-container">
-        <mat-card-header>
-            <mat-card-title>
-                <h1>Centro Hipico App Versión 1</h1>
-            </mat-card-title>
-            <mat-card-subtitle>Inicio de sessión</mat-card-subtitle>
-        </mat-card-header>
-        <mat-divider>
-        </mat-divider>
-        <mat-card-content>
-            <form [formGroup]="usuarioForm" (submit)="onAutenticarse()">
-                <div class="form-auth-padding" fxLayout="column" fxLayoutGap="12px">
-                    <mat-form-field>
-                        <input matInput placeholder="Nombre de usuario" autocomplete="off" formControlName="userName">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Contraseña" autocomplete="off" formControlName="password">
-                    </mat-form-field>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <button mat-raised-button color="primary" type="submit">Autenticar</button>
-                    </div>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
+  <mat-card class="main-card-container">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Centro Hipico App Versión 1</h1>
+      </mat-card-title>
+      <mat-card-subtitle>Inicio de sessión</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider> </mat-divider>
+    <mat-card-content>
+      <form [formGroup]="usuarioForm" (submit)="onLogin()">
+        <div class="form-auth-padding" fxLayout="column" fxLayoutGap="12px">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Nombre de usuario"
+              autocomplete="off"
+              formControlName="username"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Contraseña"
+              autocomplete="off"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-raised-button color="primary" type="submit">
+              Autenticar
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

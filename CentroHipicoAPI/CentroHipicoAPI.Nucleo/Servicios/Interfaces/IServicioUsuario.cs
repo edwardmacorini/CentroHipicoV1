@@ -5,7 +5,8 @@ namespace CentroHipicoAPI.Nucleo.Servicios
 {
     public interface IServicioUsuario
     {
-        Task<DTOUsuario> AutenticarUsuario(DTOUsuarioRequest usuario);
-        Task<DTOUsuario> RegistrarUsuario(DTOUsuario usuario);
+        Task<DTOUsuario> ObtenerUsuarioPorId(int id);
+        Task<DTOUsuarioResponse> AutenticarUsuario(DTOUsuarioRequest usuario);
+        Task<DTOUsuarioResponse> RegistrarUsuario(DTOUsuario usuario);
     }
 }
