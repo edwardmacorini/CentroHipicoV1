@@ -97,6 +97,16 @@ namespace CentroHipicoAPI.Nucleo.Repositorios
                                      }).AsNoTracking()
                                        .SingleOrDefaultAsync();
 
+            if (carrera.Carrera.Ganador != null && carrera.Carrera.Ganador != 0)
+                carrera.Ganador = await (from c in _context.Clientes
+                                         where c.Id == carrera.Carrera.Ganador
+                                         select new DTOCliente
+                                         {
+                                             Id = c.Id,
+                                             Nombre = c.Nombre,
+                                             Telefono = c.Telefono
+                                         }).SingleOrDefaultAsync();
+
             carrera.Ejemplares = await (from ce in _context.CarreraEjemplares
                                         join e in _context.Ejemplares on ce.IdEjemplar equals e.Id
                                         where ce.IdCarrera == idCarrera

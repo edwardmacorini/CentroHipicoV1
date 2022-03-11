@@ -58,27 +58,27 @@ export class CarreraService {
   }
 
   public agregarApuesta(carreraDetalle: CarreraDetalle): Observable<any> {
-    const body: any = carreraDetalle;
+    const body: CarreraDetalle = carreraDetalle;
     return this.httpClient.post(`${this.ENDPOINT_APUESTA}/agregar`, body);
   }
 
   public eliminarApuesta(carreraDetalle: CarreraDetalle): Observable<any> {
-    const body: any = carreraDetalle;
+    const body: CarreraDetalle = carreraDetalle;
     return this.httpClient.post(`${this.ENDPOINT_APUESTA}/eliminar`, body);
   }
 
   public agregarEjemplar(carreraEjemplar: CarreraEjemplar) {
-    const body: any = carreraEjemplar;
+    const body: CarreraEjemplar = carreraEjemplar;
     return this.httpClient.post(`${this.ENDPOINT_EJEMPLAR}/agregar`, body);
   }
 
   public eliminarEjemplar(carreraEjemplar: CarreraEjemplar) {
-    const body: any = carreraEjemplar;
+    const body: CarreraEjemplar = carreraEjemplar;
     return this.httpClient.post(`${this.ENDPOINT_EJEMPLAR}/eliminar`, body);
   }
 
-  public agregarGanador(carreraGanador: CarreraGanador) {
-    const body: any = carreraGanador;
+  public agregarGanador(carreraGanador: CarreraGanador): Observable<any> {
+    const body: CarreraGanador = carreraGanador;
     return this.httpClient.post(`${this.ENDPOINT_GANADOR}`, body);
   }
 }

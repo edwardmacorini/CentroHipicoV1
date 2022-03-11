@@ -17,6 +17,7 @@ export interface CarreraResponse {
     carrera: Carrera;
     ejemplares: CarreraEjemplar[];
     detalles: CarreraDetalleResponse[];
+    ganador: Cliente | null;
 }
 
 export interface CarreraEjemplar {

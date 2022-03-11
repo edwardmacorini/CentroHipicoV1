@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div *ngIf="(carrera$ | async) && carrera">
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <div>
@@ -38,8 +40,7 @@
         </app-abrir-cerrar-carrera>
         <app-agregar-apuesta [carrera]="carrera" [isDisabled]="carrera.estaActiva && carrera.estaCerrada"></app-agregar-apuesta>
         <app-agregar-ejemplar [carrera]="carrera" [isDisabled]="carrera.estaActiva && carrera.estaCerrada"></app-agregar-ejemplar>
-        <app-agregar-ganador [carrera]="carrera" [isDisabled]="!carrera.estaActiva && !carrera.estaCerrada && !carrera.ganador"></app-agregar-ganador>
-
+        <app-agregar-ganador [carrera]="carrera" [isDisabled]="(!carrera.estaActiva && !carrera.estaCerrada) || carrera.ganador != null"></app-agregar-ganador>
 
     </div>
 
@@ -66,12 +67,20 @@
 
             <ng-container matColumnDef="idCliente">
                 <th mat-header-cell *matHeaderCellDef> Cliente </th>
-                <td mat-cell *matCellDef="let element"> {{ element.cliente?.nombre ?? '' }} </td>
+                <td mat-cell *matCellDef="let element"> 
+                    <span>{{ element.cliente?.nombre ?? '' }}</span>
+                    <button mat-stroked-button color="primary"
+                        class="ganador-button"
+                        *ngIf="element.cliente && carrera.ganador && element.cliente.id === carrera.ganador">
+                        <mat-icon>grade</mat-icon>    
+                        <span>Ganador</span>
+                    </button>
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="montoApuesta">
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Monto Apuesta </th>
-                <td mat-cell *matCellDef="let element" class="text-center"> ${{ element.montoApuesta }} </td>
+                <td mat-cell *matCellDef="let element" class="text-center monto"> ${{ element.montoApuesta }} </td>
             </ng-container>
 
             <!-- <ng-container matColumnDef="accion">

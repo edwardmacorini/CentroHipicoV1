@@ -1,5 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px" class="main-container">
-    <button mat-raised-button color="primary" class="custom-button">Carreras del día</button>
-    <button mat-stroked-button color="primary" class="custom-button">Historico</button>
-    <button mat-stroked-button color="primary" class="custom-button">Configuración</button>
+<div>
+    <mat-toolbar color="primary">
+        <button mat-raised-button color="primary" class="title-app-container">
+            <h4 class="title-app">Centro Hipico V1.0</h4>
+        </button>
+        <span class="spacer"></span>
+        <button mat-raised-button color="warn" (click)="onLogout()">Cerrar Sesión</button>
+    </mat-toolbar>
 </div>

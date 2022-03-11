@@ -25,6 +25,7 @@ namespace CentroHipicoAPI.Nucleo.DTOs
         public DTOCarrera Carrera { get; set; }
         public List<DTOCarreraEjemplar> Ejemplares { get; set; }
         public List<DTOCarreraDetalleResponse> Detalles { get; set; } = new List<DTOCarreraDetalleResponse>();
+        public DTOCliente Ganador { get; set; } = null;
     }
     public class DTOCarreraEjemplar
     {

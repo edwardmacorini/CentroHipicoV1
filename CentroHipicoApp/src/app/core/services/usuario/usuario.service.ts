@@ -59,7 +59,7 @@ export class UsuarioService {
   public logout(): void {
     this.usuarioState.setState = null;
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.router.navigate(['login']);
   }
 
 }

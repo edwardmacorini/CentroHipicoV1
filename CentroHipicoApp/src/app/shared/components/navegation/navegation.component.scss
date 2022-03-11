@@ -1,0 +1,13 @@
+.main-container {
+    height: 10%;
+    width: 100%;
+}
+
+.custom-button {
+    height: 5em;
+    padding: 0.5em 2em;
+}
+
+:host ::ng-deep .custom-button span {
+    font-size: 1.3em;
+}

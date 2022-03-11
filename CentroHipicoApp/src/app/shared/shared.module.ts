@@ -7,7 +7,7 @@ import { AgregarEjemplarComponent } from './components/agregar-ejemplar/agregar-
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from "@angular/material/button";
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCommonModule } from '@angular/material/core';
@@ -21,15 +21,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavegationComponent } from './components/navegation/navegation.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
+    NavegationComponent,
     AgregarClienteComponent,
-    AgregarEjemplarComponent
+    AgregarEjemplarComponent,
   ],
   imports: [
     CommonModule,
@@ -51,11 +54,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
+    MatToolbarModule,
+    MatTooltipModule,
     /* Material Modules */
   ],
   exports: [
     HeaderComponent,
+    NavegationComponent,
     FlexLayoutModule,
     /* Material Modules */
     MatAutocompleteModule,
@@ -73,8 +78,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
     /* Material Modules */
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
