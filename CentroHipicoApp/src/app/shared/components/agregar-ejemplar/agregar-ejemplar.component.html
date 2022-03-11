@@ -5,7 +5,7 @@
     </mat-form-field>
 
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1.3em 0 0 0;">
-        <button mat-raised-button color="primary" type="submit">Agregar</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="ejemplarForm.invalid">Agregar</button>
         <button mat-raised-button color="warn" (click)="onClose($event)">Cancelar</button>
     </div>
 </form>

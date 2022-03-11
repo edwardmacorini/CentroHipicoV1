@@ -36,9 +36,9 @@
         </app-abrir-cerrar-carrera>
         <app-abrir-cerrar-carrera [opts]="true" [isDisabled]="carrera.estaCerrada" [carrera]="carrera">
         </app-abrir-cerrar-carrera>
-        <app-agregar-apuesta [carrera]="carrera"></app-agregar-apuesta>
-        <app-agregar-ejemplar [carrera]="carrera"></app-agregar-ejemplar>
-        <app-agregar-ganador [carrera]="carrera"></app-agregar-ganador>
+        <app-agregar-apuesta [carrera]="carrera" [isDisabled]="carrera.estaActiva && carrera.estaCerrada"></app-agregar-apuesta>
+        <app-agregar-ejemplar [carrera]="carrera" [isDisabled]="carrera.estaActiva && carrera.estaCerrada"></app-agregar-ejemplar>
+        <app-agregar-ganador [carrera]="carrera" [isDisabled]="!carrera.estaActiva && !carrera.estaCerrada && !carrera.ganador"></app-agregar-ganador>
 
 
     </div>

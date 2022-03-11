@@ -42,16 +42,4 @@ export class CarreraComponent implements OnInit {
     ];
   }
 
-  agregarApuesta() {
-
-  }
-
-  agregarEjemplar() {
-
-  }
-
-  agregarGanador() {
-
-  }
-
 }

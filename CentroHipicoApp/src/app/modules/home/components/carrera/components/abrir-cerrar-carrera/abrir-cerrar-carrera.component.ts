@@ -61,7 +61,8 @@ export class AbrirCerrarCarreraDialog {
   abrirCarrera() {
     this.carreraService.abrirCarrera(this.carrera.id)
       .subscribe(val => {
-        this.snackBar.open('Carrera abierta con exito..!', 'X', { duration: 2 * 1000 });
+        this.carreraService.refrescarCarrera(this.carrera.id);
+        this.snackBar.open('Carrera abierta con exito', 'X', { duration: 2 * 1000 });
         this.onClose();
       })
   }
@@ -69,7 +70,8 @@ export class AbrirCerrarCarreraDialog {
   cerrarCarrera() {
     this.carreraService.cerrarCarrera(this.carrera.id)
       .subscribe(val => {
-        this.snackBar.open('Carrera cerrada con exito..!', 'X', { duration: 2 * 1000 });
+        this.carreraService.refrescarCarrera(this.carrera.id);
+        this.snackBar.open('Carrera cerrada con exito', 'X', { duration: 2 * 1000 });
         this.onClose();
       })
   }
