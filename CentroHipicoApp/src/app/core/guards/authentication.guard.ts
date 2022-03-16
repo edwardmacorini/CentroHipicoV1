@@ -16,7 +16,7 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('Prueba de fuego');
+    console.log(!this.usuarioService.isAuthenticated());
     
     if (!this.usuarioService.isAuthenticated()) {
       this.router.navigate(['login']);
