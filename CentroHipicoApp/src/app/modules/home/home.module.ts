@@ -20,6 +20,7 @@ import {
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { EliminarCarreraDialogComponent } from './components/eliminar-carrera/eliminar-carrera.component';
+import { ComprobanteComponent, ComprobanteDialog } from './components/carrera/components/comprobante/comprobante.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { EliminarCarreraDialogComponent } from './components/eliminar-carrera/el
     AgregarEjemplarDialog,
     AgregarGanadorComponent,
     AgregarGanadorDialog,
-    EliminarCarreraDialogComponent
+    EliminarCarreraDialogComponent,
+    ComprobanteComponent,
+    ComprobanteDialog
   ],
   imports: [
     CommonModule,

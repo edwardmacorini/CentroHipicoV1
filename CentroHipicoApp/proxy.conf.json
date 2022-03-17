@@ -1,9 +1,16 @@
 {
     "/api": {
-        "target": "http://localhost:5000/api",
+        "target": "http://localhost:46028/api",
         "secure": false,
         "pathRewrite": {
             "^/api": ""
+        }
+    },
+    "/printer": {
+        "target": "http://localhost:13940/api",
+        "secure": false,
+        "pathRewrite": {
+            "^/printer": ""
         }
     }
 }

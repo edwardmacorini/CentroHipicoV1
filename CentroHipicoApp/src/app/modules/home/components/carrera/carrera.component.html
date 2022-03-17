@@ -41,6 +41,7 @@
         <app-agregar-apuesta [carrera]="carrera" [isDisabled]="carrera.estaActiva && carrera.estaCerrada"></app-agregar-apuesta>
         <app-agregar-ejemplar [carrera]="carrera" [isDisabled]="carrera.estaActiva && carrera.estaCerrada"></app-agregar-ejemplar>
         <app-agregar-ganador [carrera]="carrera" [isDisabled]="(!carrera.estaActiva && !carrera.estaCerrada) || carrera.ganador != null"></app-agregar-ganador>
+        <app-comprobante [carrera]="carrera" [isDisabled]="false"></app-comprobante>
 
     </div>
 
