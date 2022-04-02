@@ -9,10 +9,12 @@ import { AuthModule } from './modules/auth/auth.module';
 import { HomeModule } from './modules/home/home.module';
 
 import { AppComponent } from './app.component';
+import { SettingsModule } from './modules/settings/settings.module';
+import { ReportsModule } from './modules/reports/reports.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -31,6 +33,8 @@ import { AppComponent } from './app.component';
     /* My Modules */
     AuthModule,
     HomeModule,
+    ReportsModule,
+    SettingsModule,
     /* End My Modules */
   ],
   exports: [JwtModule],

@@ -24,6 +24,8 @@ namespace CentroHipicoAPI.PrinterService.Servicies
                 #region Print
                 PrintDocument pd = new PrintDocument();
                 PrinterSettings ps = new PrinterSettings();
+                var printers = PrinterSettings.InstalledPrinters;
+                ps.PrintFileName = printers[2];
                 pd.PrinterSettings = ps;
                 pd.PrintPage += Print;
                 pd.Print();

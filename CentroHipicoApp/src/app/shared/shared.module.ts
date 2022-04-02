@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCommonModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -25,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavegationComponent } from './components/navegation/navegation.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { NavegationComponent } from './components/navegation/navegation.componen
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     FlexLayoutModule,
     /* Material Modules */
     MatAutocompleteModule,
@@ -45,6 +48,7 @@ import { NavegationComponent } from './components/navegation/navegation.componen
     MatCheckboxModule,
     MatCommonModule,
     MatDialogModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -69,6 +73,7 @@ import { NavegationComponent } from './components/navegation/navegation.componen
     MatCheckboxModule,
     MatCommonModule,
     MatDialogModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

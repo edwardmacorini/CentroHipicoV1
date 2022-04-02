@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<app-navegation></app-navegation>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Configuraciones</mat-card-title>
+    <mat-card-subtitle>
+      Configuraciones del sistema y preferencias del usuario
+    </mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img matCardImage src="Card wide image source"> -->
+  <mat-card-content>
+    <mat-card class="ipconfig-box">
+      <h2>Ip servidor de impresiones</h2>
+      <mat-divider></mat-divider>
+      <form [formGroup]="ipConfigForm">
+        <mat-form-field appearance="legacy" class="ipconfig-box-input">
+          <mat-label>Ip del servidor</mat-label>
+          <input matInput placeholder="Ip..." formControlName="ip" />
+          <mat-icon matSuffix>link</mat-icon>
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onGuardarImpresoraIp()"
+          >
+            Salvar configuración
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
